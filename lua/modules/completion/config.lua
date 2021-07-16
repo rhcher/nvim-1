@@ -1,3 +1,4 @@
+-- local handlers = require "vim.lsp.handlers"
 local config = {}
 
 function config.nvim_lsp()
@@ -16,9 +17,11 @@ function config.nvim_compe()
       buffer = true;
       calc = true;
       vsnip = true;
-      nvim_lsp = true;
+      nvim_lsp = {
+        sort = false,
+      };
       nvim_lua = true;
-      spell = true;
+      spell = false;
       tags = true;
       snippets_nvim = false;
     };
@@ -38,10 +41,11 @@ function config.telescope()
   require('telescope').setup {
     defaults = {
       prompt_prefix = '🔭 ',
-      prompt_position = 'top',
+      layout_config = {
+        prompt_position = 'top',
+      },
       selection_caret = " ",
       sorting_strategy = 'ascending',
-      results_width = 0.6,
       file_previewer = require'telescope.previewers'.vim_buffer_cat.new,
       grep_previewer = require'telescope.previewers'.vim_buffer_vimgrep.new,
       qflist_previewer = require'telescope.previewers'.vim_buffer_qflist.new,

@@ -6,18 +6,18 @@ local map_cmd = bind.map_cmd
 -- default map
 local def_map = {
     -- Vim map
-    ["n|<C-x>k"]     = map_cr('bdelete'):with_noremap():with_silent(),
-    ["n|<C-s>"]      = map_cu('write'):with_noremap(),
+    ["n|<leader>bk"]     = map_cr('bdelete'):with_noremap():with_silent(),
+    ["n|<leader>bs"]      = map_cu('write'):with_noremap(),
     ["n|Y"]          = map_cmd('y$'),
     ["n|]w"]         = map_cu('WhitespaceNext'):with_noremap(),
     ["n|[w"]         = map_cu('WhitespacePrev'):with_noremap(),
     ["n|]b"]         = map_cu('bp'):with_noremap(),
     ["n|[b"]         = map_cu('bn'):with_noremap(),
     ["n|<Space>cw"]  = map_cu([[silent! keeppatterns %substitute/\s\+$//e]]):with_noremap():with_silent(),
-    ["n|<C-h>"]      = map_cmd('<C-w>h'):with_noremap(),
-    ["n|<C-l>"]      = map_cmd('<C-w>l'):with_noremap(),
-    ["n|<C-j>"]      = map_cmd('<C-w>j'):with_noremap(),
-    ["n|<C-k>"]      = map_cmd('<C-w>k'):with_noremap(),
+    ["n|<A-h>"]      = map_cmd('<C-w>h'):with_noremap(),
+    ["n|<A-l>"]      = map_cmd('<C-w>l'):with_noremap(),
+    ["n|<A-j>"]      = map_cmd('<C-w>j'):with_noremap(),
+    ["n|<A-k>"]      = map_cmd('<C-w>k'):with_noremap(),
     ["n|<A-[>"]      = map_cr('vertical resize -5'):with_silent(),
     ["n|<A-]>"]      = map_cr('vertical resize +5'):with_silent(),
     ["n|<C-q>"]      = map_cmd(':wq<CR>'),
@@ -25,7 +25,6 @@ local def_map = {
     ["n|<Leader>sl"] = map_cu('SessionLoad'):with_noremap(),
   -- Insert
     ["i|<C-w>"]      = map_cmd('<C-[>diwa'):with_noremap(),
-    ["i|<C-h>"]      = map_cmd('<BS>'):with_noremap(),
     ["i|<C-d>"]      = map_cmd('<Del>'):with_noremap(),
     ["i|<C-u>"]      = map_cmd('<C-G>u<C-U>'):with_noremap(),
     ["i|<C-b>"]      = map_cmd('<Left>'):with_noremap(),
@@ -36,6 +35,9 @@ local def_map = {
     ["i|<C-s>"]      = map_cmd('<Esc>:w<CR>'),
     ["i|<C-q>"]      = map_cmd('<Esc>:wq<CR>'),
     ["i|<C-e>"]      = map_cmd([[pumvisible() ? "\<C-e>" : "\<End>"]]):with_noremap():with_expr(),
+    ["i|jj"]         = map_cmd('<Esc>'):with_noremap(),
+    ["i|<C-l>"]      = map_cmd("<Plug>(vsnip-expand-or-jump)"):with_silent(),
+    ["i|<C-h>"]      = map_cmd("<Plug>(vsnip-jump-prev)"):with_silent(),
   -- command line
     ["c|<C-b>"]      = map_cmd('<Left>'):with_noremap(),
     ["c|<C-f>"]      = map_cmd('<Right>'):with_noremap(),

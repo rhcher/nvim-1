@@ -6,7 +6,8 @@ completion['neovim/nvim-lspconfig'] = {
   config = conf.nvim_lsp,
 }
 
-completion['glepnir/lspsaga.nvim'] = {
+completion['jasonrhansen/lspsaga.nvim'] = {
+  branch = 'finder-preview-fixes',
   cmd = 'Lspsaga',
 }
 
@@ -15,9 +16,17 @@ completion['hrsh7th/nvim-compe'] = {
   config = conf.nvim_compe,
 }
 
+completion['ray-x/lsp_signature.nvim'] = {
+  event = 'BufReadPost',
+}
+
 completion['hrsh7th/vim-vsnip'] = {
   event = 'InsertCharPre',
   config = conf.vim_vsnip
+}
+
+completion['ckipp01/stylua-nvim'] = {
+  ft = 'lua',
 }
 
 completion['nvim-telescope/telescope.nvim'] = {

@@ -51,6 +51,8 @@ function config.vim_vista()
     markdown = 'toc',
     typescript = 'nvim_lsp',
     typescriptreact =  'nvim_lsp',
+    cpp = 'nvim_lsp',
+    lua = 'nvim_lsp'
   }
 end
 

@@ -25,6 +25,16 @@ _G.tab_complete = function()
   end
 end
 
+_G.my_tab_complete = function ()
+  if vim.fn.pumvisible() == 1 then
+    return vim.fn['compe#confirm']()
+  elseif vim.fn.call("vsnip#available", {1}) == 1 then
+    return t "<Plug>(vsnip-expand-or-jump)"
+  else
+    return t "<Tab>"
+  end
+end
+
 _G.s_tab_complete = function()
   if vim.fn.pumvisible() == 1 then
     return t "<C-p>"

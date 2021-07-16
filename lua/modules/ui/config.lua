@@ -60,9 +60,9 @@ function config.nvim_tree()
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_bindings = {
-    ["l"] = ":lua require'nvim-tree'.on_keypress('edit')<CR>",
-    ["s"] = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>",
-    ["i"] = ":lua require'nvim-tree'.on_keypress('split')<CR>",
+    { key = "l", cb = ":lua require'nvim-tree'.on_keypress('edit')<CR>" },
+    { key = "s", cb = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>" },
+    { key = "i", cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" }
   }
   vim.g.nvim_tree_icons = {
     default =  '',
@@ -137,7 +137,7 @@ function config.indent_blakline()
     "" -- for all buffers without a file type
   }
   vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
-  vim.g.indent_blankline_show_trailing_blankline_indent = false
+  vim.g.indent_blankline_show_trailing_blankline_indent = true
   vim.g.indent_blankline_show_current_context = true
   vim.g.indent_blankline_context_patterns = {
     "class",

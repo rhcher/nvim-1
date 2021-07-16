@@ -6,9 +6,10 @@ local map_args = bind.map_args
 require('keymap.config')
 
 local plug_map = {
-    ["i|<TAB>"]      = map_cmd('v:lua.tab_complete()'):with_expr():with_silent(),
-    ["i|<S-TAB>"]    = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
-    ["i|<CR>"]       = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]]):with_noremap():with_expr():with_nowait(),
+    ["i|<S-TAB>"]     = map_cmd('v:lua.s_tab_complete()'):with_silent():with_expr(),
+    ["i|<return>"]       = map_cmd([[compe#confirm({ 'keys': "\<Plug>delimitMateCR", 'mode': '' })]]):with_noremap():with_expr():with_nowait(),
+    ["i|<TAB>"]       = map_cmd('v:lua.my_tab_complete()'):with_expr():with_silent(),
+    ["i|<C-space>"]      = map_cmd([[compe#complete()]]):with_noremap():with_expr():with_nowait(),
     -- person keymap
     ["n|mf"]             = map_cr("<cmd>lua require('internal.fsevent').file_event()<CR>"):with_silent():with_nowait():with_noremap();
     ["n|gb"]             = map_cr("BufferLinePick"):with_noremap():with_silent(),
@@ -19,19 +20,21 @@ local plug_map = {
     -- Lsp mapp work when insertenter and lsp start
     ["n|<leader>li"]     = map_cr("LspInfo"):with_noremap():with_silent():with_nowait(),
     ["n|<leader>ll"]     = map_cr("LspLog"):with_noremap():with_silent():with_nowait(),
-    ["n|<leader>lr"]     = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
+    ["n|<leader>lR"]     = map_cr("LspRestart"):with_noremap():with_silent():with_nowait(),
+    ["n|<leader>l="]     = map_cmd("<cmd>lua vim.lsp.buf.formatting()<CR>"):with_noremap():with_silent():with_nowait(),
     ["n|<C-f>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>"):with_silent():with_noremap():with_nowait(),
     ["n|<C-b>"]          = map_cmd("<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>"):with_silent():with_noremap():with_nowait(),
     ["n|[e"]             = map_cr('Lspsaga diagnostic_jump_next'):with_noremap():with_silent(),
     ["n|]e"]             = map_cr('Lspsaga diagnostic_jump_prev'):with_noremap():with_silent(),
     ["n|K"]              = map_cr("Lspsaga hover_doc"):with_noremap():with_silent(),
-    ["n|ga"]             = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
-    ["v|ga"]             = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
-    ["n|gd"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
-    ["n|gD"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
-    ["n|gs"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
-    ["n|gr"]             = map_cr('Lspsaga rename'):with_noremap():with_silent(),
-    ["n|gh"]             = map_cr('Lspsaga lsp_finder'):with_noremap():with_silent(),
+    ["n|<leader>la"]             = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
+    ["v|<leader>la"]             = map_cu("Lspsaga range_code_action"):with_noremap():with_silent(),
+--     ["n|gd"]             = map_cr('Lspsaga preview_definition'):with_noremap():with_silent(),
+    ["n|gd"]             = map_cmd("<cmd>lua vim.lsp.buf.definition()<CR>"):with_noremap():with_silent(),
+    ["n|gy"]             = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>"):with_noremap():with_silent(),
+    ["n|gh"]             = map_cr('Lspsaga signature_help'):with_noremap():with_silent(),
+    ["n|<leader>lr"]             = map_cr('Lspsaga rename'):with_noremap():with_silent(),
+    ["n|gr"]             = map_cr('Lspsaga lsp_finder'):with_noremap():with_silent(),
     ["n|gt"]             = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>cw"]     = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
     ["n|<Leader>ce"]     = map_cr('Lspsaga show_line_diagnostics'):with_noremap():with_silent(),
@@ -69,8 +72,8 @@ local plug_map = {
     ["x|gcc"]            = map_cr('ProComment'),
     ["n|gcj"]            = map_cu('ProDoc'):with_silent():with_silent(),
     -- Plugin acceleratedjk
-    ["n|j"]              = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
-    ["n|k"]              = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
+--     ["n|j"]              = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
+--     ["n|k"]              = map_cmd('v:lua.enhance_jk_move("k")'):with_silent():with_expr(),
     -- Plugin QuickRun
     ["n|<Leader>r"]     = map_cr("<cmd> lua require'internal.quickrun'.run_command()"):with_noremap():with_silent(),
     -- Plugin Vista
