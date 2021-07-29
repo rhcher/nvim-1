@@ -1,5 +1,10 @@
 local config = {}
 
+function config.nord()
+  require('nord').set()
+  vim.g.nord_disable_background = true
+end
+
 function config.galaxyline()
   require('modules.ui.eviline')
 end
@@ -19,10 +24,11 @@ function config.dashboard()
   local home = os.getenv('HOME')
   vim.g.dashboard_footer_icon = '🐬 '
   vim.g.dashboard_preview_command = 'cat'
-  vim.g.dashboard_preview_pipeline = 'lolcat -F 0.3'
-  vim.g.dashboard_preview_file = home .. '/.config/nvim/static/neovim.cat'
-  vim.g.dashboard_preview_file_height = 12
-  vim.g.dashboard_preview_file_width = 80
+--   vim.g.dashboard_preview_pipeline = 'lolcat -F 0.3'
+  vim.g.dashboard_preview_pipeline = 'cat'
+  vim.g.dashboard_preview_file = home .. '/.config/nvim/static/test'
+  vim.g.dashboard_preview_file_height = 24
+  vim.g.dashboard_preview_file_width = 60
   vim.g.dashboard_default_executive = 'telescope'
   vim.g.dashboard_custom_section = {
     last_session = {

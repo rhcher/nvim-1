@@ -90,12 +90,12 @@ lspconfig.sumneko_lua.setup({
 	},
 })
 
-lspconfig.tsserver.setup({
-	on_attach = function(client)
-		client.resolved_capabilities.document_formatting = false
-		enhance_attach(client)
-	end,
-})
+-- lspconfig.tsserver.setup({
+-- 	on_attach = function(client)
+-- 		client.resolved_capabilities.document_formatting = false
+-- 		enhance_attach(client)
+-- 	end,
+-- })
 
 -- lspconfig.clangd.setup {
 --   capabilities = capabilities,
@@ -152,24 +152,27 @@ lspconfig.rust_analyzer.setup({
 -- })
 
 lspconfig.pylsp.setup({
-  filetypes = {'python'},
-  root_dir = function (fname)
-    return util.find_git_ancestor(fname) or vim.loop.os_homedir()
-  end,
+	capabilities = capabilities,
+	filetypes = { "python" },
 	settings = {
 		pylsp = {
 			plugins = {
 				pylint = { enabled = false, executable = "pylint" },
 				pyflakes = { enabled = false },
 				pycodestyle = { enabled = false },
-				jedi_completion = { fuzzy = false },
+				jedi_completion = {
+          enable = true,
+          fuzzy = false,
+          include_params = true,
+          include_class_objects = true,
+        },
 				pyls_isort = { enabled = true },
-				pylsp_mypy = { enabled = true },
+				pylsp_mypy = { enabled = false },
 			},
 		},
 	},
 	flags = {
-		debounce_text_changes = 200,
+		debounce_text_changes = 150,
 	},
 })
 
@@ -177,11 +180,13 @@ local servers = {
 	"dockerls",
 	"bashls",
 	"hls",
-  "pylsp",
 }
 
 for _, server in ipairs(servers) do
 	lspconfig[server].setup({
 		on_attach = enhance_attach,
+		flags = {
+			debounce_text_changes = 150,
+		},
 	})
 end
