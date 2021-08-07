@@ -4,8 +4,8 @@ local conf = require('modules.ui.config')
 -- ui['glepnir/zephyr-nvim'] = {
 --   config = [[vim.cmd('colorscheme zephyr')]]
 -- }
-ui['shaunsingh/nord.nvim'] = {
-  config = conf.nord
+ui['Murtaza-Udaipurwala/gruvqueen'] = {
+  config = conf.gruvqueen
 }
 
 ui['glepnir/dashboard-nvim'] = {

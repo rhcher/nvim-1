@@ -11,6 +11,10 @@ tools['editorconfig/editorconfig-vim'] = {
   ft = { 'go','typescript','javascript','vim','rust','zig','c','cpp' }
 }
 
+tools['akinsho/nvim-toggleterm.lua'] = {
+  config = conf.toggleterm
+}
+
 tools['glepnir/prodoc.nvim'] = {
   event = 'BufReadPre'
 }

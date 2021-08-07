@@ -1,8 +1,9 @@
 local config = {}
 
-function config.nord()
-  require('nord').set()
-  vim.g.nord_disable_background = true
+function config.gruvqueen()
+  vim.g.gruvqueen_transparent_background = true
+  vim.g.gruvqueen_style = 'mix'
+  vim.cmd('colorscheme gruvqueen')
 end
 
 function config.galaxyline()

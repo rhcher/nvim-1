@@ -1,9 +1,13 @@
 local editor = {}
 local conf = require('modules.editor.config')
 
-editor['Raimondi/delimitMate'] = {
+-- editor['Raimondi/delimitMate'] = {
+--   event = 'InsertEnter',
+--   config = conf.delimimate,
+-- }
+editor['windwp/nvim-autopairs'] = {
   event = 'InsertEnter',
-  config = conf.delimimate,
+  config = conf.autopairs,
 }
 
 editor['rhysd/accelerated-jk'] = {

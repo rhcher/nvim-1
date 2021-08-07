@@ -31,7 +31,7 @@ vim.cmd("command! -nargs=0 LspRestart call v:lua.reload_lsp()")
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 	-- Enable underline, use default values
-	underline = true,
+	underline = false,
 	-- Enable virtual text, override spacing to 4
 	virtual_text = true,
 	signs = {
@@ -47,6 +47,18 @@ local enhance_attach = function(client, bufnr)
 		format.lsp_before_save()
 	end
 	api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	require("lsp_signature").on_attach({
+		bind = true,
+		handler_opts = {
+			border = "double",
+		},
+		use_lspsaga = false,
+		floating_window = false,
+		fix_pos = true,
+		hint_enable = true,
+		hi_parameter = "Search",
+		extra_trigger_char = { "(", "," },
+	})
 end
 
 lspconfig.gopls.setup({
@@ -60,6 +72,8 @@ lspconfig.gopls.setup({
 })
 
 lspconfig.sumneko_lua.setup({
+	on_attach = enhance_attach,
+	capabilities = capabilities,
 	commands = {
 		Format = {
 			function()
@@ -67,7 +81,6 @@ lspconfig.sumneko_lua.setup({
 			end,
 		},
 	},
-	capabilities = capabilities,
 	cmd = {
 		global.home .. "/lua-language-server/bin/Linux/lua-language-server",
 		"-E",
@@ -87,6 +100,9 @@ lspconfig.sumneko_lua.setup({
 				library = vim.list_extend({ [vim.fn.expand("$VIMRUNTIME/lua")] = true }, {}),
 			},
 		},
+	},
+	flags = {
+		debounce_text_changes = 150,
 	},
 })
 
@@ -109,6 +125,7 @@ lspconfig.sumneko_lua.setup({
 -- }
 
 lspconfig.ccls.setup({
+	on_attach = enhance_attach,
 	capabilities = capabilities,
 	cmd = { "ccls" },
 	filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
@@ -126,24 +143,17 @@ lspconfig.ccls.setup({
 			hierarchicalPath = true,
 		},
 	},
-	on_attach = function()
-		require("lsp_signature").on_attach({
-			bind = true,
-			handler_opts = {
-				border = "double",
-			},
-			use_lspsaga = false,
-			floating_window = true,
-			fix_pos = true,
-			hint_enable = true,
-			hi_parameter = "Search",
-			extra_trigger_char = { "(", "," },
-		})
-	end,
+	flags = {
+		debounce_text_changes = 150,
+	},
 })
 
 lspconfig.rust_analyzer.setup({
+	on_attach = enhance_attach,
 	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
 })
 
 -- lspconfig.pyls_ms.setup({
@@ -151,7 +161,16 @@ lspconfig.rust_analyzer.setup({
 -- 	cmd = { "dotnet", "exec", global.home .. "/.emacs.d/.local/etc/lsp/mspyls/Microsoft.Python.LanguageServer.dll" },
 -- })
 
+lspconfig.racket_langserver.setup({
+	on_attach = enhance_attach,
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 lspconfig.pylsp.setup({
+	on_attach = enhance_attach,
 	capabilities = capabilities,
 	filetypes = { "python" },
 	settings = {
@@ -161,13 +180,14 @@ lspconfig.pylsp.setup({
 				pyflakes = { enabled = false },
 				pycodestyle = { enabled = false },
 				jedi_completion = {
-          enable = true,
-          fuzzy = false,
-          include_params = true,
-          include_class_objects = true,
-        },
+					enable = true,
+					fuzzy = false,
+					include_params = false,
+					include_class_objects = true,
+					eager = true,
+				},
 				pyls_isort = { enabled = true },
-				pylsp_mypy = { enabled = false },
+				pylsp_mypy = { enabled = true },
 			},
 		},
 	},
@@ -176,10 +196,17 @@ lspconfig.pylsp.setup({
 	},
 })
 
+lspconfig.hls.setup({
+	on_attach = enhance_attach,
+	capabilities = capabilities,
+	flags = {
+		debounce_text_changes = 150,
+	},
+})
+
 local servers = {
 	"dockerls",
 	"bashls",
-	"hls",
 }
 
 for _, server in ipairs(servers) do

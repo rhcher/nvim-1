@@ -56,4 +56,25 @@ function config.vim_vista()
   }
 end
 
+function config.toggleterm()
+  require("toggleterm").setup{
+    size = function(term)
+      if term.direction == "horizontal" then
+        return 15
+      elseif term.direction == "vertical" then
+        return vim.o.columns * 0.4
+      end
+    end,
+    open_mapping = [[<M-=>]],
+    hide_numbers = true,
+    shade_terminals = true,
+    start_in_insert = true,
+    insert_mappings = true,
+    persist_size = true,
+    direction = 'horizontal',
+    close_on_exit = true,
+    shell = vim.o.shell,
+  }
+end
+
 return config
