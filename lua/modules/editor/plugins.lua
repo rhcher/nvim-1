@@ -1,51 +1,53 @@
 local editor = {}
-local conf = require('modules.editor.config')
+local conf = require("modules.editor.config")
 
 -- editor['Raimondi/delimitMate'] = {
 --   event = 'InsertEnter',
 --   config = conf.delimimate,
 -- }
-editor['windwp/nvim-autopairs'] = {
-  event = 'InsertEnter',
-  config = conf.autopairs,
+editor["windwp/nvim-autopairs"] = {
+	event = "InsertEnter",
+	config = conf.autopairs,
 }
 
-editor['rhysd/accelerated-jk'] = {
-  opt = true
+editor["rhysd/accelerated-jk"] = {
+	opt = true,
 }
 
-editor['norcalli/nvim-colorizer.lua'] = {
-  ft = { 'html','css','sass','vim','typescript','typescriptreact'},
-  config = conf.nvim_colorizer
+editor["norcalli/nvim-colorizer.lua"] = {
+	ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact" },
+	config = conf.nvim_colorizer,
 }
 
-editor['itchyny/vim-cursorword'] = {
-  event = {'BufReadPre','BufNewFile'},
-  config = conf.vim_cursorwod
+editor["itchyny/vim-cursorword"] = {
+	event = { "BufReadPre", "BufNewFile" },
+	config = conf.vim_cursorwod,
 }
 
-editor['hrsh7th/vim-eft'] = {
-  opt = true,
-  config = function()
-    vim.g.eft_ignorecase = true
+editor["hrsh7th/vim-eft"] = {
+	opt = true,
+	config = function()
+		vim.g.eft_ignorecase = true
+	end,
+}
+
+editor["tpope/vim-surround"] = {
+	event = "BufEnter",
+}
+
+editor["tpope/vim-sleuth"] = {
+  event = "BufEnter",
+  config = function ()
+    vim.g.sleuth_automatic = 0
   end
 }
 
-editor['kana/vim-operator-replace'] = {
-  keys = {{'x','p'}},
-  config = function()
-    vim.api.nvim_set_keymap("x", "p", "<Plug>(operator-replace)",{silent =true})
-  end,
-  requires = 'kana/vim-operator-user'
+editor["tpope/vim-commentary"] = {
+  event = "InsertEnter",
 }
 
-editor['rhysd/vim-operator-surround'] = {
-  event = 'BufRead',
-  requires = 'kana/vim-operator-user'
-}
-
-editor['kana/vim-niceblock']  = {
-  opt = true
+editor["kana/vim-niceblock"] = {
+	opt = true,
 }
 
 return editor

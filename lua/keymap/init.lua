@@ -44,8 +44,9 @@ local plug_map = {
 		:with_noremap()
 		:with_silent(),
 	["n|<leader>lr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
-	["n|gr"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
-	-- ["n|gr"] = map_cmd("<cmd>lua vim.lsp.buf.references()<CR>"):with_noremap():with_silent(),
+	["n|<leader>lt"] = map_cr("<cmd>lua vim.lsp.codelens.display()<CR>"):with_noremap():with_silent(),
+-- 	["n|gr"] = map_cr("Lspsaga lsp_finder"):with_noremap():with_silent(),
+	["n|gr"] = map_cmd("<cmd>lua vim.lsp.buf.references()<CR>"):with_noremap():with_silent(),
 	["n|gt"] = map_cmd("<cmd>lua vim.lsp.buf.type_definition()<CR>"):with_noremap():with_silent(),
 	["n|<Leader>cw"] = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>"):with_noremap():with_silent(),
 	["n|<Leader>ce"] = map_cr("Lspsaga show_line_diagnostics"):with_noremap():with_silent(),
@@ -81,8 +82,8 @@ local plug_map = {
 		:with_silent(),
 	["n|<Leader>fs"] = map_cu("Telescope gosource"):with_noremap():with_silent(),
 	-- prodoc
-	["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
-	["x|gcc"] = map_cr("ProComment"),
+-- 	["n|gcc"] = map_cu("ProComment"):with_noremap():with_silent(),
+-- 	["x|gcc"] = map_cr("ProComment"),
 	["n|gcj"] = map_cu("ProDoc"):with_silent():with_silent(),
 	-- Plugin acceleratedjk
 	--     ["n|j"]              = map_cmd('v:lua.enhance_jk_move("j")'):with_silent():with_expr(),
@@ -92,9 +93,9 @@ local plug_map = {
 	-- Plugin Vista
 	["n|<Leader>v"] = map_cu("Vista"):with_noremap():with_silent(),
 	-- Plugin vim-operator-surround
-	["n|sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
-	["n|sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
-	["n|sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
+-- 	["n|sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
+-- 	["n|sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
+-- 	["n|sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
 	-- Plugin hrsh7th/vim-eft
 	["n|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
 	["x|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),

@@ -2,6 +2,8 @@ local config = {}
 
 function config.gruvqueen()
   vim.g.gruvqueen_transparent_background = true
+  vim.g.gruvqueen_disable_color = true
+  vim.g.gruvqueen_invert_selection = false
   vim.g.gruvqueen_style = 'mix'
   vim.cmd('colorscheme gruvqueen')
 end
