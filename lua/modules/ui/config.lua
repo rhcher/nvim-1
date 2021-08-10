@@ -1,121 +1,133 @@
 local config = {}
 
-function config.gruvqueen()
-  vim.g.gruvqueen_transparent_background = true
-  vim.g.gruvqueen_disable_color = true
-  vim.g.gruvqueen_invert_selection = false
-  vim.g.gruvqueen_style = 'mix'
-  vim.cmd('colorscheme gruvqueen')
-end
+-- function config.gruvbox()
+-- 	vim.o.background = "dark" -- or light if you so prefer
+--   vim.g.gruvbox_material_better_performance = 1
+--   vim.g.gruvbox_material_sign_column_background = 'None'
+--   vim.g.gruvbox_material_transparent_background = 1
+--   vim.g.gruvbox_material_background = 'hard'
+--   vim.cmd[[colorscheme gruvbox-material]]
+-- end
 
 function config.galaxyline()
-  require('modules.ui.eviline')
+  require "modules.ui.eviline"
 end
 
 function config.nvim_bufferline()
-  require('bufferline').setup{
+  require("bufferline").setup {
     options = {
-      modified_icon = '✥',
-      buffer_close_icon = '',
+      modified_icon = "✥",
+      buffer_close_icon = "",
       mappings = true,
       always_show_bufferline = false,
-    }
+    },
   }
 end
 
 function config.dashboard()
-  local home = os.getenv('HOME')
-  vim.g.dashboard_footer_icon = '🐬 '
-  vim.g.dashboard_preview_command = 'cat'
---   vim.g.dashboard_preview_pipeline = 'lolcat -F 0.3'
-  vim.g.dashboard_preview_pipeline = 'cat'
-  vim.g.dashboard_preview_file = home .. '/.config/nvim/static/test'
+  local home = os.getenv "HOME"
+  vim.g.dashboard_footer_icon = "🐬 "
+  vim.g.dashboard_preview_command = "cat"
+  --   vim.g.dashboard_preview_pipeline = 'lolcat -F 0.3'
+  vim.g.dashboard_preview_pipeline = "cat"
+  vim.g.dashboard_preview_file = home .. "/.config/nvim/static/test"
   vim.g.dashboard_preview_file_height = 24
   vim.g.dashboard_preview_file_width = 60
-  vim.g.dashboard_default_executive = 'telescope'
+  vim.g.dashboard_default_executive = "telescope"
   vim.g.dashboard_custom_section = {
     last_session = {
-      description = {'  Recently laset session                  SPC s l'},
-      command =  'SessionLoad'},
+      description = { "  Recently laset session                  SPC s l" },
+      command = "SessionLoad",
+    },
     find_history = {
-      description = {'  Recently opened files                   SPC f h'},
-      command =  'DashboardFindHistory'},
-    find_file  = {
-      description = {'  Find  File                              SPC f f'},
-      command = 'Telescope find_files find_command=rg,--hidden,--files'},
+      description = { "  Recently opened files                   SPC f h" },
+      command = "DashboardFindHistory",
+    },
+    find_file = {
+      description = { "  Find  File                              SPC f f" },
+      command = "Telescope find_files find_command=rg,--hidden,--files",
+    },
     new_file = {
-     description = {'  File Browser                            SPC f b'},
-     command =  'Telescope file_browser'},
+      description = { "  File Browser                            SPC f b" },
+      command = "Telescope file_browser",
+    },
     find_word = {
-     description = {'  Find  word                              SPC f w'},
-     command = 'DashboardFindWord'},
+      description = { "  Find  word                              SPC f w" },
+      command = "DashboardFindWord",
+    },
     find_dotfiles = {
-     description = {'  Open Personal dotfiles                  SPC f d'},
-     command = 'Telescope dotfiles path=' .. home ..'/.dotfiles'},
+      description = { "  Open Personal dotfiles                  SPC f d" },
+      command = "Telescope dotfiles path=" .. home .. "/.dotfiles",
+    },
     go_source = {
-     description = {'  Find Go Source Code                     SPC f s'},
-     command = 'Telescope gosource'},
+      description = { "  Find Go Source Code                     SPC f s" },
+      command = "Telescope gosource",
+    },
   }
 end
 
 function config.nvim_tree()
   -- On Ready Event for Lazy Loading work
-  require("nvim-tree.events").on_nvim_tree_ready(
-    function()
-      vim.cmd("NvimTreeRefresh")
-    end
-  )
+  require("nvim-tree.events").on_nvim_tree_ready(function()
+    vim.cmd "NvimTreeRefresh"
+  end)
   vim.g.nvim_tree_follow = 1
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_indent_markers = 1
   vim.g.nvim_tree_bindings = {
     { key = "l", cb = ":lua require'nvim-tree'.on_keypress('edit')<CR>" },
     { key = "s", cb = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>" },
-    { key = "i", cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" }
+    { key = "i", cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" },
   }
   vim.g.nvim_tree_icons = {
-    default =  '',
-    symlink =  '',
+    default = "",
+    symlink = "",
     git = {
-     unstaged = "✚",
-     staged =  "✚",
-     unmerged =  "≠",
-     renamed =  "≫",
-     untracked = "★",
+      unstaged = "✚",
+      staged = "✚",
+      unmerged = "≠",
+      renamed = "≫",
+      untracked = "★",
     },
   }
 end
 
 function config.gitsigns()
-  if not packer_plugins['plenary.nvim'].loaded then
+  if not packer_plugins["plenary.nvim"].loaded then
     vim.cmd [[packadd plenary.nvim]]
   end
-  require('gitsigns').setup {
+  require("gitsigns").setup {
     signs = {
-      add = {hl = 'GitGutterAdd', text = '▋'},
-      change = {hl = 'GitGutterChange',text= '▋'},
-      delete = {hl= 'GitGutterDelete', text = '▋'},
-      topdelete = {hl ='GitGutterDeleteChange',text = '▔'},
-      changedelete = {hl = 'GitGutterChange', text = '▎'},
+      add = { hl = "GitGutterAdd", text = "▋" },
+      change = { hl = "GitGutterChange", text = "▋" },
+      delete = { hl = "GitGutterDelete", text = "▋" },
+      topdelete = { hl = "GitGutterDeleteChange", text = "▔" },
+      changedelete = { hl = "GitGutterChange", text = "▎" },
     },
     keymaps = {
-       -- Default keymap options
-       noremap = true,
-       buffer = true,
+      -- Default keymap options
+      noremap = true,
+      buffer = true,
 
-       ['n ]g'] = { expr = true, "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'"},
-       ['n [g'] = { expr = true, "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'"},
+      ["n ]g"] = {
+        expr = true,
+        "&diff ? ']g' : '<cmd>lua require\"gitsigns\".next_hunk()<CR>'",
+      },
+      ["n [g"] = {
+        expr = true,
+        "&diff ? '[g' : '<cmd>lua require\"gitsigns\".prev_hunk()<CR>'",
+      },
 
-       ['n <leader>hs'] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
-       ['n <leader>hu'] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
-       ['n <leader>hr'] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
-       ['n <leader>hp'] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
-       ['n <leader>hb'] = '<cmd>lua require"gitsigns".blame_line()<CR>',
+      ["n <leader>hs"] = '<cmd>lua require"gitsigns".stage_hunk()<CR>',
+      ["n <leader>hu"] = '<cmd>lua require"gitsigns".undo_stage_hunk()<CR>',
+      ["n <leader>hr"] = '<cmd>lua require"gitsigns".reset_hunk()<CR>',
+      ["n <leader>hp"] = '<cmd>lua require"gitsigns".preview_hunk()<CR>',
+      ["n <leader>hb"] = '<cmd>lua require"gitsigns".blame_line()<CR>',
 
-       -- Text objects
-       ['o ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>',
-       ['x ih'] = ':<C-U>lua require"gitsigns".text_object()<CR>'
-     },
+      -- Text objects
+      ["o ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+      ["x ih"] = ':<C-U>lua require"gitsigns".text_object()<CR>',
+    },
   }
 end
 
@@ -143,9 +155,9 @@ function config.indent_blakline()
     "TelescopePrompt",
     "undotree",
     "flutterToolsOutline",
-    "" -- for all buffers without a file type
+    "", -- for all buffers without a file type
   }
-  vim.g.indent_blankline_buftype_exclude = {"terminal", "nofile"}
+  vim.g.indent_blankline_buftype_exclude = { "terminal", "nofile" }
   vim.g.indent_blankline_show_trailing_blankline_indent = true
   vim.g.indent_blankline_show_current_context = true
   vim.g.indent_blankline_context_patterns = {
@@ -159,10 +171,10 @@ function config.indent_blakline()
     "^table",
     "if_statement",
     "while",
-    "for"
+    "for",
   }
   -- because lazy load indent-blankline so need readd this autocmd
-  vim.cmd('autocmd CursorMoved * IndentBlanklineRefresh')
+  vim.cmd "autocmd CursorMoved * IndentBlanklineRefresh"
 end
 
 return config
