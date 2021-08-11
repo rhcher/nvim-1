@@ -68,6 +68,10 @@ local enhance_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     format.lsp_before_save()
   end
+  local ext = vim.fn.expand "%:e"
+  if ext == "lua" then
+    vim.api.nvim_command "au BufWritePre *.lua Format"
+  end
   if client.resolved_capabilities.code_lens then
     vim.cmd [[
     augroup CodeLens
