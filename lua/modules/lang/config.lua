@@ -7,12 +7,18 @@ function config.nvim_treesitter()
     ensure_installed = { "c", "cpp", "rust", "lua", "python", "cmake" },
     autopairs = { enable = true },
     indent = {
-      enable = false,
+      enable = true,
+      disable = { "py", "python" },
     },
     highlight = {
       enable = true,
     },
     textobjects = {
+      swap = {
+        enable = true,
+        swap_next = { ["<space>i"] = "@parameter.inner" },
+        swap_previous = { ["<space>I"] = "@parameter.inner" },
+      },
       select = {
         enable = true,
         keymaps = {

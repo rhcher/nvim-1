@@ -51,7 +51,7 @@ _G.contextual_documentation = function()
     -- vim.lsp.buf.hover()
   else
     cword = vim.fn.expand "<cword>"
-    vim.cmd("help" .. cword)
+    vim.cmd("help " .. cword)
   end
 end
 

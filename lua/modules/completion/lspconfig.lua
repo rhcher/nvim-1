@@ -68,6 +68,20 @@ local enhance_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     format.lsp_before_save()
   end
+  -- Set autocommands conditional on server_capabilities
+  -- if client.resolved_capabilities.document_highlight then
+  --   -- vim.g.cursorword_highlight = 1
+  --   vim.api.nvim_exec(
+  --     [[
+  -- augroup lsp_document_highlight
+  -- autocmd! * <buffer>
+  -- autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+  -- autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+  -- augroup END
+  -- ]],
+  --     false
+  --   )
+  -- end
   local ext = vim.fn.expand "%:e"
   if ext == "lua" then
     vim.api.nvim_command "au BufWritePre *.lua Format"

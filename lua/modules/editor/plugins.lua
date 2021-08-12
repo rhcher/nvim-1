@@ -32,7 +32,7 @@ editor["hrsh7th/vim-eft"] = {
 }
 
 editor["tpope/vim-surround"] = {
-  event = "BufEnter",
+  event = { "BufReadPre", "BufNewFile" },
 }
 
 editor["tpope/vim-sleuth"] = {
@@ -43,7 +43,7 @@ editor["tpope/vim-sleuth"] = {
 }
 
 editor["tpope/vim-commentary"] = {
-  event = "InsertEnter",
+  event = { "BufReadPre", "BufNewFile" },
 }
 
 editor["kana/vim-niceblock"] = {
