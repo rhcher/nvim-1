@@ -4,14 +4,13 @@ function config.autopairs()
   local npairs = require "nvim-autopairs"
   local Rule = require "nvim-autopairs.rule"
   local cond = require "nvim-autopairs.conds"
+
   npairs.setup {
     enable_check_bracket_line = true,
     check_ts = true,
   }
+
   npairs.add_rules {
-    -- Rule("'", "'")
-    --   :with_pair(cond.not_before_regex_check "%w")
-    --   :with_pair(cond.not_filetypes { "rkt", "scm", "lisp" }),
     Rule(" ", " ")
       :with_pair(function(opts)
         local pair = opts.line:sub(opts.col - 1, opts.col)
