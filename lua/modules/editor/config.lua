@@ -8,9 +8,10 @@ function config.autopairs()
     enable_check_bracket_line = true,
     check_ts = true,
   }
-  npairs.remove_rule "'"
   npairs.add_rules {
-    Rule("'", "'"):with_pair(cond.not_filetypes { "racket", "scheme", "lisp" }),
+    -- Rule("'", "'")
+    --   :with_pair(cond.not_before_regex_check "%w")
+    --   :with_pair(cond.not_filetypes { "rkt", "scm", "lisp" }),
     Rule(" ", " ")
       :with_pair(function(opts)
         local pair = opts.line:sub(opts.col - 1, opts.col)
@@ -55,6 +56,7 @@ function config.autopairs()
     end
     return true
   end)
+  npairs.get_rule("'"):with_pair(cond.not_filetypes { "rkt", "scheme", "lisp" })
 end
 
 function config.nvim_colorizer()

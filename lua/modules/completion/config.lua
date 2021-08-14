@@ -12,6 +12,14 @@ function config.nvim_compe()
     min_length = 1,
     preselect = "always",
     allow_prefix_unmatch = false,
+    documentation = {
+      border = "rounded", -- the border option is the same as `|help nvim_open_win|`
+      winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+      max_width = 60,
+      min_width = 30,
+      max_height = math.floor(vim.o.lines * 0.3),
+      min_height = 1,
+    },
     source = {
       path = true,
       buffer = true,
