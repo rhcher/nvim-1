@@ -34,6 +34,10 @@ function config.nvim_compe()
       snippets_nvim = false,
     },
   }
+  require("nvim-autopairs.completion.compe").setup {
+    map_cr = false,
+    map_complete = true,
+  }
 end
 
 function config.vim_vsnip()
