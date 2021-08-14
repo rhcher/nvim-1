@@ -48,13 +48,6 @@ function config.autopairs()
       :with_del(cond.none())
       :use_key "]",
   }
-  local parenthesis_rule = npairs.get_rule "("
-  parenthesis_rule:with_pair(function()
-    if vim.fn.pumvisible() then
-      vim.cmd [[ call timer_start(0, { -> luaeval('require"compe"._close()')})]]
-    end
-    return true
-  end)
   npairs.get_rule("'"):with_pair(cond.not_filetypes { "rkt", "scheme", "lisp" })
 end
 

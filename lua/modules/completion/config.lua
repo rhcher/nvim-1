@@ -5,39 +5,41 @@ function config.nvim_lsp()
   require "modules.completion.lspconfig"
 end
 
-function config.nvim_compe()
-  require("compe").setup {
-    enabled = true,
-    debug = false,
-    min_length = 1,
-    preselect = "always",
-    allow_prefix_unmatch = false,
-    documentation = {
-      border = "rounded", -- the border option is the same as `|help nvim_open_win|`
-      winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
-      max_width = 60,
-      min_width = 30,
-      max_height = math.floor(vim.o.lines * 0.3),
-      min_height = 1,
+function config.nvim_cmp()
+  local cmp = require "cmp"
+  cmp.setup {
+    completion = {
+      completeopt = "menu,menuone,noselect",
     },
-    source = {
-      path = true,
-      buffer = true,
-      calc = true,
-      vsnip = true,
-      nvim_lsp = {
-        sort = false,
+    -- You should change this example to your chosen snippet engine.
+    snippet = {
+      expand = function(args)
+        -- You must install `vim-vsnip` if you set up as same as the following.
+        vim.fn["vsnip#anonymous"](args.body)
+      end,
+    },
+    -- You must set mapping.
+    mapping = {
+      ["<C-p>"] = cmp.mapping.prev_item(),
+      ["<C-n>"] = cmp.mapping.next_item(),
+      ["<C-d>"] = cmp.mapping.scroll(-4),
+      ["<C-f>"] = cmp.mapping.scroll(4),
+      ["<C-Space>"] = cmp.mapping.complete(),
+      ["<C-e>"] = cmp.mapping.close(),
+      ["<tab>"] = cmp.mapping.confirm {
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
       },
-      nvim_lua = true,
-      spell = false,
-      tags = true,
-      snippets_nvim = false,
+    },
+    -- You should specify your *installed* sources.
+    sources = {
+      { name = "buffer" },
+      { name = "path" },
+      { name = "nvim_lsp" },
+      { name = "calc" },
     },
   }
-  require("nvim-autopairs.completion.compe").setup {
-    map_cr = false,
-    map_complete = true,
-  }
+  require("cmp_nvim_lsp").setup {}
 end
 
 function config.vim_vsnip()

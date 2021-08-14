@@ -11,9 +11,15 @@ completion["jasonrhansen/lspsaga.nvim"] = {
   cmd = "Lspsaga",
 }
 
-completion["hrsh7th/nvim-compe"] = {
-  event = "InsertEnter",
-  config = conf.nvim_compe,
+completion["hrsh7th/nvim-cmp"] = {
+  config = conf.nvim_cmp,
+  requires = {
+    "hrsh7th/cmp-buffer",
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-calc",
+    "hrsh7th/cmp-vsnip",
+    "hrsh7th/cmp-path",
+  },
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
