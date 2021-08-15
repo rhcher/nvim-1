@@ -7,9 +7,26 @@ end
 
 function config.nvim_cmp()
   local cmp = require "cmp"
+  local compare = require "cmp.config.compare"
   cmp.setup {
     completion = {
+      autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect",
+    },
+    sorting = {
+      priority_weight = 0.,
+      comparators = {
+        compare.score,
+        compare.exact,
+        compare.kind,
+        compare.offset,
+        compare.sort_text,
+        compare.length,
+        compare.order,
+      },
+    },
+    documentation = {
+      border = "rounded",
     },
     -- You should change this example to your chosen snippet engine.
     snippet = {
@@ -37,6 +54,7 @@ function config.nvim_cmp()
       { name = "path" },
       { name = "nvim_lsp" },
       { name = "calc" },
+      { name = "vsnip" },
     },
   }
   require("cmp_nvim_lsp").setup {}

@@ -38,7 +38,7 @@ editor["tpope/vim-surround"] = {
 editor["tpope/vim-sleuth"] = {
   event = "BufEnter",
   config = function()
-    vim.g.sleuth_automatic = 0
+    vim.g.sleuth_automatic = 1
   end,
 }
 

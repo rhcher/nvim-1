@@ -4,12 +4,8 @@ function config.nvim_treesitter()
   vim.api.nvim_command "set foldmethod=expr"
   vim.api.nvim_command "set foldexpr=nvim_treesitter#foldexpr()"
   require("nvim-treesitter.configs").setup {
-    ensure_installed = { "c", "cpp", "rust", "lua", "python", "cmake" },
+    ensure_installed = { "c", "cpp", "rust", "lua", "python", "cmake", "haskell" },
     autopairs = { enable = true },
-    indent = {
-      enable = true,
-      disable = { "py", "python" },
-    },
     highlight = {
       enable = true,
     },

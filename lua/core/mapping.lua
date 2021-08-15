@@ -41,6 +41,7 @@ local def_map = {
     :with_expr(),
   ["i|jj"] = map_cmd("<Esc>"):with_noremap(),
   ["i|<C-l>"] = map_cmd("<Plug>(vsnip-expand-or-jump)"):with_silent(),
+  ["s|<C-l>"] = map_cmd("<Plug>(vsnip-expand-or-jump)"):with_silent(),
   ["i|<C-h>"] = map_cmd("<Plug>(vsnip-jump-prev)"):with_silent(),
   ["i|<M-h>"] = map_cmd([[<C-\><C-n><C-w>h]]):with_silent(),
   ["i|<M-j>"] = map_cmd([[<C-\><C-n><C-w>j]]):with_silent(),

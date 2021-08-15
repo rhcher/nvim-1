@@ -18,12 +18,12 @@ capabilities.textDocument.completion.completionItem.documentationFormat = {
   "markdown",
 }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
--- capabilities.textDocument.completion.completionItem.preselectSupport = true
--- capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
--- capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
--- capabilities.textDocument.completion.completionItem.deprecatedSupport = true
--- capabilities.textDocument.completion.completionItem.commitCharactersSupport =
---   true
+capabilities.textDocument.completion.completionItem.preselectSupport = true
+capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
+capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
+capabilities.textDocument.completion.completionItem.deprecatedSupport = true
+capabilities.textDocument.completion.completionItem.commitCharactersSupport =
+  true
 capabilities.textDocument.completion.completionItem.tagSupport = {
   valueSet = { 1 },
 }
@@ -165,48 +165,48 @@ lspconfig.sumneko_lua.setup {
 -- 	end,
 -- })
 
-lspconfig.clangd.setup {
-  on_attach = enhance_attach,
-  capabilities = capabilities,
-  cmd = {
-    "clangd",
-    "--background-index",
-    "--suggest-missing-includes",
-    "--clang-tidy",
-    "--header-insertion=iwyu",
-  },
-  flags = {
-    debounce_text_changes = 150,
-  },
-}
-
--- lspconfig.ccls.setup {
+-- lspconfig.clangd.setup {
 --   on_attach = enhance_attach,
 --   capabilities = capabilities,
---   cmd = { "ccls" },
---   filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
---   root_dir = function(fname)
---     return util.root_pattern(
---       "compile_commands.json",
---       ".git",
---       ".ccls-root",
---       ".ccls"
---     )(fname) or util.path.dirname(fname)
---   end,
---   init_options = {
---     index = {
---       trackDependency = 2,
---       initialNoLinkage = true,
---     },
---     cache = {
---       directory = "/tmp/ccls-cache/",
---       hierarchicalPath = true,
---     },
+--   cmd = {
+--     "clangd",
+--     "--background-index",
+--     "--suggest-missing-includes",
+--     "--clang-tidy",
+--     "--header-insertion=iwyu",
 --   },
 --   flags = {
 --     debounce_text_changes = 150,
 --   },
 -- }
+
+lspconfig.ccls.setup {
+  on_attach = enhance_attach,
+  capabilities = capabilities,
+  cmd = { "ccls" },
+  filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
+  root_dir = function(fname)
+    return util.root_pattern(
+      "compile_commands.json",
+      ".git",
+      ".ccls-root",
+      ".ccls"
+    )(fname) or util.path.dirname(fname)
+  end,
+  init_options = {
+    index = {
+      trackDependency = 2,
+      initialNoLinkage = true,
+    },
+    cache = {
+      directory = "/tmp/ccls-cache/",
+      hierarchicalPath = true,
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
 
 lspconfig.rust_analyzer.setup {
   on_attach = enhance_attach,
