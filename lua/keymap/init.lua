@@ -7,8 +7,8 @@ require "keymap.config"
 
 local plug_map = {
   -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
-  -- ["i|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent(),
-  -- ["s|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent(),
+  ["i|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent(),
+  ["s|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent(),
   -- ["i|<TAB>"] = map_cmd("v:lua.my_tab_complete()"):with_expr():with_silent(),
   -- ["s|<TAB>"] = map_cmd("v:lua.my_tab_complete()"):with_expr():with_silent(),
   -- ["i|<C-space>"] = map_cmd([[compe#complete()]])

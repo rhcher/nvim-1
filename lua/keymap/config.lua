@@ -35,14 +35,14 @@ _G.my_tab_complete = function()
   end
 end
 
--- _G.my_cr = function()
---   local npairs = require "nvim-autopairs"
---   if vim.fn.pumvisible() == 1 then
---     return t "<C-e><CR>"
---   else
---     return npairs.autopairs_cr()
---   end
--- end
+_G.my_cr = function()
+  local npairs = require "nvim-autopairs"
+  if vim.fn.pumvisible() ~= 0 then
+    return npairs.esc "<cr>"
+  else
+    return npairs.autopairs_cr()
+  end
+end
 
 _G.contextual_documentation = function()
   lsp_active = vim.lsp.buf_get_clients()
