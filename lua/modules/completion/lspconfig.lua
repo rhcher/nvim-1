@@ -130,10 +130,8 @@ lspconfig.sumneko_lua.setup {
     },
   },
   cmd = {
-    "lua-language-server",
-    -- global.home .. "/lua-language-server/bin/Linux/lua-language-server",
-    -- "-E",
-    -- global.home .. "/lua-language-server/main.lua",
+    "/home/rhcher/workspace/lua-language-server/bin/Linux/lua-language-server",
+    "/home/rhcher/workspace/lua-language-server/main.lua"
   },
   settings = {
     Lua = {

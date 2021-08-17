@@ -14,12 +14,12 @@ function config.nvim_cmp()
       completeopt = "menu,menuone,noselect",
     },
     sorting = {
-      priority_weight = 0.,
+      priority_weight = 2.,
       comparators = {
-        compare.score,
-        compare.exact,
-        compare.kind,
         compare.offset,
+        compare.exact,
+        compare.score,
+        compare.kind,
         compare.sort_text,
         compare.length,
         compare.order,
@@ -50,11 +50,11 @@ function config.nvim_cmp()
     },
     -- You should specify your *installed* sources.
     sources = {
+      { name = "nvim_lsp" },
+      { name = "vsnip" },
       { name = "buffer" },
       { name = "path" },
-      { name = "nvim_lsp" },
       { name = "calc" },
-      { name = "vsnip" },
     },
   }
   require("cmp_nvim_lsp").setup {}
