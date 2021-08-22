@@ -15,13 +15,7 @@ ui["glepnir/galaxyline.nvim"] = {
   requires = "kyazdani42/nvim-web-devicons",
 }
 
--- ui['lukas-reineke/indent-blankline.nvim'] = {
---   event = 'BufRead',
---   branch = 'master',
---   config = conf.indent_blakline
--- }
-
-ui["akinsho/nvim-bufferline.lua"] = {
+ui["akinsho/bufferline.nvim"] = {
   config = conf.nvim_bufferline,
   requires = "kyazdani42/nvim-web-devicons",
 }

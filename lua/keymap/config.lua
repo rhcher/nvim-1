@@ -38,7 +38,7 @@ end
 _G.my_cr = function()
   local npairs = require "nvim-autopairs"
   if vim.fn.pumvisible() ~= 0 then
-    return npairs.esc "<cr>"
+    return npairs.esc "<C-e><CR>"
   else
     return npairs.autopairs_cr()
   end

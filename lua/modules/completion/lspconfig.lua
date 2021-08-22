@@ -13,6 +13,7 @@ saga.init_lsp_saga {
   code_action_icon = "💡",
 }
 
+require("cmp_nvim_lsp").setup {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = {
   "markdown",
@@ -131,7 +132,7 @@ lspconfig.sumneko_lua.setup {
   },
   cmd = {
     "/home/rhcher/workspace/lua-language-server/bin/Linux/lua-language-server",
-    "/home/rhcher/workspace/lua-language-server/main.lua"
+    "/home/rhcher/workspace/lua-language-server/main.lua",
   },
   settings = {
     Lua = {

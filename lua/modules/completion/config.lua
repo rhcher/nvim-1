@@ -7,23 +7,13 @@ end
 
 function config.nvim_cmp()
   local cmp = require "cmp"
-  local compare = require "cmp.config.compare"
+  local t = function(str)
+    return vim.api.nvim_replace_termcodes(str, true, true, true)
+  end
   cmp.setup {
     completion = {
       autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect",
-    },
-    sorting = {
-      priority_weight = 2.,
-      comparators = {
-        compare.offset,
-        compare.exact,
-        compare.score,
-        compare.kind,
-        compare.sort_text,
-        compare.length,
-        compare.order,
-      },
     },
     documentation = {
       border = "rounded",
@@ -43,10 +33,19 @@ function config.nvim_cmp()
       ["<C-f>"] = cmp.mapping.scroll(4),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.close(),
-      ["<tab>"] = cmp.mapping.confirm {
-        behavior = cmp.ConfirmBehavior.Replace,
+      ["<C-y>"] = cmp.mapping.confirm {
         select = true,
+        behavior = cmp.ConfirmBehavior.Replace,
       },
+      ["<Tab>"] = cmp.mapping.mode({ "i", "s" }, function(_, fallback)
+        if vim.fn.pumvisible() == 1 then
+          vim.fn.feedkeys(t "<C-y>", "")
+        elseif vim.fn["vsnip#available"]() == 1 then
+          vim.fn.feedkeys(t "<Plug>(vsnip-expand-or-jump)", "")
+        else
+          fallback()
+        end
+      end),
     },
     -- You should specify your *installed* sources.
     sources = {
@@ -57,7 +56,6 @@ function config.nvim_cmp()
       { name = "calc" },
     },
   }
-  require("cmp_nvim_lsp").setup {}
 end
 
 function config.vim_vsnip()

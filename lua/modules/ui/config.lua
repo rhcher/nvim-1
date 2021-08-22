@@ -1,14 +1,5 @@
 local config = {}
 
--- function config.gruvbox()
--- 	vim.o.background = "dark" -- or light if you so prefer
---   vim.g.gruvbox_material_better_performance = 1
---   vim.g.gruvbox_material_sign_column_background = 'None'
---   vim.g.gruvbox_material_transparent_background = 1
---   vim.g.gruvbox_material_background = 'hard'
---   vim.cmd[[colorscheme gruvbox-material]]
--- end
-
 function config.galaxyline()
   require "modules.ui.eviline"
 end
@@ -18,7 +9,6 @@ function config.nvim_bufferline()
     options = {
       modified_icon = "✥",
       buffer_close_icon = "",
-      mappings = true,
       always_show_bufferline = false,
     },
   }

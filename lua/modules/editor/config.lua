@@ -6,8 +6,9 @@ function config.autopairs()
   local cond = require "nvim-autopairs.conds"
 
   npairs.setup {
-    enable_check_bracket_line = true,
+    enable_check_bracket_line = false,
     check_ts = true,
+    fast_wrap = {},
   }
 
   npairs.add_rules {

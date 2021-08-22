@@ -14,16 +14,16 @@ completion["jasonrhansen/lspsaga.nvim"] = {
 completion["hrsh7th/nvim-cmp"] = {
   config = conf.nvim_cmp,
   requires = {
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-calc",
-    "hrsh7th/cmp-vsnip",
-    "hrsh7th/cmp-path",
+    { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
+    { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+    { "hrsh7th/cmp-calc", after = "nvim-cmp" },
+    { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
+    { "hrsh7th/cmp-path", after = "nvim-cmp" },
   },
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
-  event = "BufReadPost",
+  event = "BufReadPre",
 }
 
 completion["hrsh7th/vim-vsnip"] = {
