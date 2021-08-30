@@ -20,6 +20,7 @@ completion["hrsh7th/nvim-cmp"] = {
     { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
     { "hrsh7th/cmp-path", after = "nvim-cmp" },
   },
+  event = "InsertEnter",
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
