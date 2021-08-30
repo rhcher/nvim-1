@@ -13,10 +13,10 @@ saga.init_lsp_saga {
   code_action_icon = "💡",
 }
 
-require("cmp_nvim_lsp").setup {}
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.documentationFormat = {
   "markdown",
+  "plaintext",
 }
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 capabilities.textDocument.completion.completionItem.preselectSupport = true
@@ -65,6 +65,10 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   }
 )
 
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
+})
+
 local enhance_attach = function(client, bufnr)
   if client.resolved_capabilities.document_formatting then
     format.lsp_before_save()
@@ -83,10 +87,10 @@ local enhance_attach = function(client, bufnr)
   --     false
   --   )
   -- end
-  local ext = vim.fn.expand "%:e"
-  if ext == "lua" then
-    vim.api.nvim_command "au BufWritePre *.lua Format"
-  end
+  -- local ext = vim.fn.expand "%:e"
+  -- if ext == "lua" then
+  --   vim.api.nvim_command "au BufWritePre *.lua Format"
+  -- end
   -- if client.resolved_capabilities.code_lens then
   --   vim.cmd [[
   --   augroup CodeLens
@@ -153,7 +157,7 @@ lspconfig.sumneko_lua.setup {
     },
   },
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -175,7 +179,7 @@ lspconfig.sumneko_lua.setup {
 --     "--header-insertion=iwyu",
 --   },
 --   flags = {
---     debounce_text_changes = 150,
+--     debounce_text_changes = 200,
 --   },
 -- }
 
@@ -203,7 +207,7 @@ lspconfig.ccls.setup {
     },
   },
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -211,7 +215,7 @@ lspconfig.rust_analyzer.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -224,7 +228,7 @@ lspconfig.racket_langserver.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -251,7 +255,7 @@ lspconfig.pylsp.setup {
     },
   },
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -259,7 +263,7 @@ lspconfig.hls.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 150,
+    debounce_text_changes = 200,
   },
 }
 
@@ -272,7 +276,7 @@ for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = enhance_attach,
     flags = {
-      debounce_text_changes = 150,
+      debounce_text_changes = 200,
     },
   }
 end

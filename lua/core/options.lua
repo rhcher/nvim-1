@@ -14,7 +14,7 @@ local function load_options()
   local global_local = {
     termguicolors = true,
     showmatch = true,
-    matchtime = 1,
+    matchtime = 0,
     mouse = "nv",
     errorbells = true,
     visualbell = true,

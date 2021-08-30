@@ -10,6 +10,7 @@ function config.nvim_cmp()
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
+  local compare = require("cmp.config.compare")
   cmp.setup {
     completion = {
       autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
@@ -17,6 +18,17 @@ function config.nvim_cmp()
     },
     documentation = {
       border = "rounded",
+    },
+    sorting = {
+      comparators = {
+        compare.offset,
+        compare.exact,
+        compare.score,
+        compare.kind,
+        compare.length,
+        compare.sort_text,
+        compare.order,
+      },
     },
     -- You should change this example to your chosen snippet engine.
     snippet = {
@@ -27,17 +39,17 @@ function config.nvim_cmp()
     },
     -- You must set mapping.
     mapping = {
-      ["<C-p>"] = cmp.mapping.prev_item(),
-      ["<C-n>"] = cmp.mapping.next_item(),
-      ["<C-d>"] = cmp.mapping.scroll(-4),
-      ["<C-f>"] = cmp.mapping.scroll(4),
+      ["<C-p>"] = cmp.mapping.select_prev_item(),
+      ["<C-n>"] = cmp.mapping.select_next_item(),
+      ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.close(),
       ["<C-y>"] = cmp.mapping.confirm {
         select = true,
         behavior = cmp.ConfirmBehavior.Replace,
       },
-      ["<Tab>"] = cmp.mapping.mode({ "i", "s" }, function(_, fallback)
+      ["<Tab>"] = cmp.mapping(function(fallback)
         if vim.fn.pumvisible() == 1 then
           vim.fn.feedkeys(t "<C-y>", "")
         elseif vim.fn["vsnip#available"]() == 1 then
@@ -45,7 +57,10 @@ function config.nvim_cmp()
         else
           fallback()
         end
-      end),
+      end, {
+        "i",
+        "s",
+      }),
     },
     -- You should specify your *installed* sources.
     sources = {
@@ -54,6 +69,16 @@ function config.nvim_cmp()
       { name = "buffer" },
       { name = "path" },
       { name = "calc" },
+    },
+    formatting = {
+      format = function(entry, vim_item)
+        vim_item.menu = ({
+          nvim_lsp = "[LSP]",
+          buffer = "[Buf]",
+          vsnip = "[Vsnip]",
+        })[entry.source.name]
+        return vim_item
+      end,
     },
   }
 end

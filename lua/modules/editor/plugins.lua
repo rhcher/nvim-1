@@ -2,7 +2,7 @@ local editor = {}
 local conf = require "modules.editor.config"
 
 editor["windwp/nvim-autopairs"] = {
-  event = "InsertEnter",
+  after = "nvim-cmp",
   config = conf.autopairs,
 }
 
@@ -12,7 +12,7 @@ editor["norcalli/nvim-colorizer.lua"] = {
 }
 
 editor["itchyny/vim-cursorword"] = {
-  event = { "BufReadPre", "BufNewFile" },
+  event = { "InsertEnter", "BufNewFile" },
   config = conf.vim_cursorwod,
 }
 

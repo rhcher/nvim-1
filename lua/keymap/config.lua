@@ -47,8 +47,8 @@ end
 _G.contextual_documentation = function()
   lsp_active = vim.lsp.buf_get_clients()
   if #lsp_active > 0 then
-    require("lspsaga.hover").render_hover_doc()
-    -- vim.lsp.buf.hover()
+    -- require("lspsaga.hover").render_hover_doc()
+    vim.lsp.buf.hover()
   else
     cword = vim.fn.expand "<cword>"
     vim.cmd("help " .. cword)
