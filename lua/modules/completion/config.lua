@@ -17,7 +17,7 @@ function config.nvim_cmp()
       completeopt = "menu,menuone,noselect",
     },
     documentation = {
-      border = "rounded",
+      border = "double",
     },
     sorting = {
       comparators = {

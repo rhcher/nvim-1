@@ -1,16 +1,12 @@
 local tools = {}
 local conf = require "modules.tools.config"
 
-tools["editorconfig/editorconfig-vim"] = {
-  ft = { "go", "typescript", "javascript", "vim", "rust", "zig", "c", "cpp" },
+tools["tpope/vim-repeat"] = {
+  event = "BufReadPre"
 }
 
 tools["akinsho/nvim-toggleterm.lua"] = {
   config = conf.toggleterm,
-}
-
-tools["glepnir/prodoc.nvim"] = {
-  event = "BufReadPre",
 }
 
 tools["liuchengxu/vista.vim"] = {
