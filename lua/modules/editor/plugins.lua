@@ -42,4 +42,6 @@ editor["kana/vim-niceblock"] = {
   opt = true,
 }
 
+editor["lewis6991/impatient.nvim"] = {}
+
 return editor
