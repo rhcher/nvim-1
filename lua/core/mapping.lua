@@ -59,8 +59,8 @@ local def_map = {
   ["c|<C-a>"] = map_cmd("<Home>"):with_noremap(),
   ["c|<C-e>"] = map_cmd("<End>"):with_noremap(),
   ["c|<C-d>"] = map_cmd("<Del>"):with_noremap(),
-  ["c|<C-n>"] = map_cmd("<down>"):with_noremap(),
-  ["c|<C-p>"] = map_cmd("<up>"):with_noremap(),
+  -- ["c|<C-n>"] = map_cmd("<down>"):with_noremap(),
+  -- ["c|<C-p>"] = map_cmd("<up>"):with_noremap(),
   ["c|<C-t>"] = map_cmd([[<C-R>=expand("%:p:h") . "/" <CR>]]):with_noremap(),
   -- visual mode
   ["x|>"] = map_cmd([[>gv]]):with_noremap(),
