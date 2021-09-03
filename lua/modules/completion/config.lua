@@ -10,11 +10,14 @@ function config.nvim_cmp()
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
-  local compare = require("cmp.config.compare")
+  local compare = require "cmp.config.compare"
   cmp.setup {
     completion = {
       autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect",
+    },
+    experimental = {
+      ghost_text = true,
     },
     documentation = {
       border = "double",
