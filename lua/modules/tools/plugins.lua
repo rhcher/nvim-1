@@ -15,9 +15,11 @@ tools["liuchengxu/vista.vim"] = {
 }
 
 tools["brooth/far.vim"] = {
-  cmd = { "Far", "Farp" },
+  cmd = { "Farf", "Farp" },
   config = function()
     vim.g["far#source"] = "rg"
+    vim.g["far#auto_preview"] = 0
+    vim.g["far#auto_preview_on_start"] = 0
   end,
 }
 
