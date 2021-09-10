@@ -17,10 +17,10 @@ function config.nvim_cmp()
       completeopt = "menu,menuone,noselect",
     },
     experimental = {
-      ghost_text = true,
+      ghost_text = false,
     },
     documentation = {
-      border = "double",
+      border = "single",
     },
     sorting = {
       comparators = {
@@ -74,6 +74,7 @@ function config.nvim_cmp()
       { name = "calc" },
     },
     formatting = {
+      deprecated = false,
       format = function(entry, vim_item)
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
