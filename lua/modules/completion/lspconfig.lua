@@ -102,15 +102,25 @@ local enhance_attach = function(client, bufnr)
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
   require("lsp_signature").on_attach {
     bind = true,
-    handler_opts = {
-      border = "double",
-    },
-    use_lspsaga = false,
     floating_window = false,
-    fix_pos = true,
+    -- floating_window_above_first = true,
+    fix_pos = function(signatures, lspclient)
+      if
+        signatures[1].activeParameter >= 0 and #signatures[1].parameters == 1
+      then
+        return false
+      end
+      if lspclient.name == "sumneko_lua" then
+        return true
+      end
+      return false
+    end,
     hint_enable = true,
     hi_parameter = "Search",
     extra_trigger_char = { "(", "," },
+    handler_opts = {
+      border = "single",
+    },
   }
 end
 
