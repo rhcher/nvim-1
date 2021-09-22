@@ -52,9 +52,17 @@ function config.nvim_cmp()
         select = true,
         behavior = cmp.ConfirmBehavior.Replace,
       },
+      ["<CR>"] = cmp.mapping(function (fallback)
+        if cmp.visible() then
+          cmp.mapping.close()
+          fallback()
+        else
+          fallback()
+        end
+      end, {"i"}),
       ["<Tab>"] = cmp.mapping(function(fallback)
-        if vim.fn.pumvisible() == 1 then
-          vim.fn.feedkeys(t "<C-y>", "")
+        if cmp.visible() then
+          cmp.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace }
         elseif vim.fn["vsnip#available"]() == 1 then
           vim.fn.feedkeys(t "<Plug>(vsnip-expand-or-jump)", "")
         else

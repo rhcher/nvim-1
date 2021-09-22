@@ -4,37 +4,8 @@ local lspconfig = require "lspconfig"
 local global = require "core.global"
 local format = require "modules.completion.format"
 
-if not packer_plugins["lspsaga.nvim"].loaded then
-  vim.cmd [[packadd lspsaga.nvim]]
-end
-
-local saga = require "lspsaga"
-saga.init_lsp_saga {
-  code_action_icon = "💡",
-}
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities.textDocument.completion.completionItem.documentationFormat = {
-  "markdown",
-  "plaintext",
-}
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-capabilities.textDocument.completion.completionItem.preselectSupport = true
-capabilities.textDocument.completion.completionItem.insertReplaceSupport = true
-capabilities.textDocument.completion.completionItem.labelDetailsSupport = true
-capabilities.textDocument.completion.completionItem.deprecatedSupport = true
-capabilities.textDocument.completion.completionItem.commitCharactersSupport =
-  true
-capabilities.textDocument.completion.completionItem.tagSupport = {
-  valueSet = { 1 },
-}
-capabilities.textDocument.completion.completionItem.resolveSupport = {
-  properties = {
-    "documentation",
-    "detail",
-    "additionalTextEdits",
-  },
-}
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 function _G.reload_lsp()
   vim.lsp.stop_client(vim.lsp.get_active_clients())
@@ -100,28 +71,31 @@ local enhance_attach = function(client, bufnr)
   --   ]]
   -- end
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  require("lsp_signature").on_attach {
-    bind = true,
-    floating_window = false,
-    -- floating_window_above_first = true,
-    fix_pos = function(signatures, lspclient)
-      if
-        signatures[1].activeParameter >= 0 and #signatures[1].parameters == 1
-      then
+  if vim.fn.expand "%:e" ~= "rkt" then
+    require("lsp_signature").on_attach {
+      bind = true,
+      floating_window = true,
+      -- floating_window_above_first = true,
+      fix_pos = function(signatures, lspclient)
+        if
+          signatures[1].activeParameter >= 0 and #signatures[1].parameters
+            == 1
+        then
+          return false
+        end
+        if lspclient.name == "sumneko_lua" then
+          return true
+        end
         return false
-      end
-      if lspclient.name == "sumneko_lua" then
-        return true
-      end
-      return false
-    end,
-    hint_enable = true,
-    hi_parameter = "Search",
-    extra_trigger_char = { "(", "," },
-    handler_opts = {
-      border = "single",
-    },
-  }
+      end,
+      hint_enable = false,
+      hi_parameter = "Search",
+      extra_trigger_char = { "(", "," },
+      handler_opts = {
+        border = "single",
+      },
+    }
+  end
 end
 
 lspconfig.gopls.setup {

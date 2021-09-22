@@ -13,9 +13,10 @@ completion["jasonrhansen/lspsaga.nvim"] = {
 
 completion["hrsh7th/nvim-cmp"] = {
   config = conf.nvim_cmp,
+  branch = "custom-menu",
   requires = {
     { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
-    { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" },
+    { "hrsh7th/cmp-nvim-lsp", event = "BufReadPre" },
     { "hrsh7th/cmp-calc", after = "nvim-cmp" },
     { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
     { "hrsh7th/cmp-path", after = "nvim-cmp" },
