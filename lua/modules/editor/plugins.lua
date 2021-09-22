@@ -6,6 +6,18 @@ editor["windwp/nvim-autopairs"] = {
   config = conf.autopairs,
 }
 
+editor["andymass/vim-matchup"] = {
+  event = "BufEnter",
+  config = function ()
+    vim.g.matchup_matchparen_deferred = 1
+    vim.g.matchup_matchparen_hi_surround_always = 1
+  end
+}
+
+editor["calebsmith/vim-lambdify"] = {
+  event = "BufEnter",
+}
+
 editor["norcalli/nvim-colorizer.lua"] = {
   ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact" },
   config = conf.nvim_colorizer,
