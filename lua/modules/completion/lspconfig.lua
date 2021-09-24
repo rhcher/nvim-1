@@ -141,7 +141,7 @@ lspconfig.sumneko_lua.setup {
     },
   },
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -163,7 +163,7 @@ lspconfig.sumneko_lua.setup {
 --     "--header-insertion=iwyu",
 --   },
 --   flags = {
---     debounce_text_changes = 200,
+--     debounce_text_changes = 100,
 --   },
 -- }
 
@@ -191,7 +191,7 @@ lspconfig.ccls.setup {
     },
   },
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -199,7 +199,7 @@ lspconfig.rust_analyzer.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -212,7 +212,7 @@ lspconfig.racket_langserver.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -239,7 +239,7 @@ lspconfig.pylsp.setup {
     },
   },
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -247,7 +247,7 @@ lspconfig.hls.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
   flags = {
-    debounce_text_changes = 200,
+    debounce_text_changes = 100,
   },
 }
 
@@ -260,7 +260,7 @@ for _, server in ipairs(servers) do
   lspconfig[server].setup {
     on_attach = enhance_attach,
     flags = {
-      debounce_text_changes = 200,
+      debounce_text_changes = 100,
     },
   }
 end
