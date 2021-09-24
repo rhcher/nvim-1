@@ -10,27 +10,28 @@ function config.nvim_cmp()
   local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
   end
-  local compare = require "cmp.config.compare"
   cmp.setup {
     completion = {
       autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect",
+      keyword_pattern = [[\k\+]],
     },
     experimental = {
-      ghost_text = false,
+      custom_menu = true,
+      ghost_text = true,
     },
     documentation = {
       border = "single",
     },
     sorting = {
       comparators = {
-        compare.offset,
-        compare.exact,
-        compare.score,
-        compare.kind,
-        compare.length,
-        compare.sort_text,
-        compare.order,
+        cmp.config.compare.offset,
+        cmp.config.compare.exact,
+        cmp.config.compare.score,
+        cmp.config.compare.kind,
+        cmp.config.compare.length,
+        cmp.config.compare.sort_text,
+        cmp.config.compare.order,
       },
     },
     -- You should change this example to your chosen snippet engine.
@@ -52,14 +53,6 @@ function config.nvim_cmp()
         select = true,
         behavior = cmp.ConfirmBehavior.Replace,
       },
-      ["<CR>"] = cmp.mapping(function (fallback)
-        if cmp.visible() then
-          cmp.mapping.close()
-          fallback()
-        else
-          fallback()
-        end
-      end, {"i"}),
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.confirm { select = true, behavior = cmp.ConfirmBehavior.Replace }
@@ -77,12 +70,16 @@ function config.nvim_cmp()
     sources = {
       { name = "nvim_lsp" },
       { name = "vsnip" },
-      { name = "buffer" },
+      {
+        name = "buffer",
+        opts = {
+          keyword_pattern = [[\k\+]],
+        },
+      },
       { name = "path" },
       { name = "calc" },
     },
     formatting = {
-      deprecated = false,
       format = function(entry, vim_item)
         vim_item.menu = ({
           nvim_lsp = "[LSP]",
