@@ -22,7 +22,7 @@ function config.nvim_treesitter()
           ["if"] = "@function.inner",
           ["ac"] = "@class.outer",
           ["ic"] = "@class.inner",
-          ["ia"] = "@parameter.inner",
+          -- ["ia"] = "@parameter.inner",
         },
       },
       move = {
