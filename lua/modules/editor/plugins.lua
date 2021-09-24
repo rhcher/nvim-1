@@ -14,7 +14,8 @@ editor["windwp/nvim-autopairs"] = {
 editor["wellle/targets.vim"] = {}
 
 editor["calebsmith/vim-lambdify"] = {
-  event = "BufEnter",
+  ft = {"scheme", "lisp", "rkt"},
+  event = "BufReadPre",
 }
 
 editor["norcalli/nvim-colorizer.lua"] = {
