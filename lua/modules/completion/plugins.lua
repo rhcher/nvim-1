@@ -20,6 +20,7 @@ completion["hrsh7th/nvim-cmp"] = {
     { "hrsh7th/cmp-calc", after = "nvim-cmp" },
     { "hrsh7th/cmp-vsnip", after = "nvim-cmp" },
     { "hrsh7th/cmp-path", after = "nvim-cmp" },
+    { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
   },
   event = "InsertEnter",
 }

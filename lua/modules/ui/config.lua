@@ -57,28 +57,17 @@ function config.dashboard()
 end
 
 function config.nvim_tree()
-  -- On Ready Event for Lazy Loading work
-  require("nvim-tree.events").on_nvim_tree_ready(function()
-    vim.cmd "NvimTreeRefresh"
-  end)
-  vim.g.nvim_tree_follow = 1
+  require("nvim-tree").setup {
+    hijack_cursor = true,
+    view = {
+      auto_resize = true,
+    },
+  }
   vim.g.nvim_tree_hide_dotfiles = 1
   vim.g.nvim_tree_indent_markers = 1
-  vim.g.nvim_tree_bindings = {
-    { key = "l", cb = ":lua require'nvim-tree'.on_keypress('edit')<CR>" },
-    { key = "s", cb = ":lua require'nvim-tree'.on_keypress('vsplit')<CR>" },
-    { key = "i", cb = ":lua require'nvim-tree'.on_keypress('split')<CR>" },
-  }
   vim.g.nvim_tree_icons = {
     default = "",
     symlink = "",
-    git = {
-      unstaged = "✚",
-      staged = "✚",
-      unmerged = "≠",
-      renamed = "≫",
-      untracked = "★",
-    },
   }
 end
 

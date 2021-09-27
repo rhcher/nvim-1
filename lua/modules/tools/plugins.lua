@@ -6,6 +6,7 @@ tools["tpope/vim-repeat"] = {
 }
 
 tools["akinsho/nvim-toggleterm.lua"] = {
+  keys = {"n", "<M-=>"},
   config = conf.toggleterm,
 }
 

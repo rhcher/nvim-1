@@ -6,6 +6,7 @@ function config.nvim_treesitter()
   require("nvim-treesitter.configs").setup {
     ensure_installed = { "c", "cpp", "rust", "lua", "python", "cmake", "haskell" },
     autopairs = { enable = true },
+    matchup = { enable = true, },
     highlight = {
       enable = true,
     },

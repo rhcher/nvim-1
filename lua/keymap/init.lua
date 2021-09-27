@@ -76,7 +76,9 @@ local plug_map = {
   ["n|gy"] = map_cmd("<cmd>lua vim.lsp.buf.implementation()<CR>")
     :with_noremap()
     :with_silent(),
-  ["n|<leader>lr"] = map_cr("Lspsaga rename"):with_noremap():with_silent(),
+  ["n|<leader>lr"] = map_cmd("<cmd>lua vim.lsp.buf.rename()<CR>")
+    :with_noremap()
+    :with_silent(),
   ["n|<leader>lt"] = map_cr("<cmd>lua vim.lsp.codelens.display()<CR>")
     :with_noremap()
     :with_silent(),
@@ -90,7 +92,9 @@ local plug_map = {
   ["n|<Leader>cw"] = map_cmd("<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
     :with_noremap()
     :with_silent(),
-  ["n|<Leader>ce"] = map_cr("Lspsaga show_line_diagnostics")
+  ["n|<Leader>ce"] = map_cmd(
+    "<cmd>lua vim.diagnostic.show_line_diagnostics()<CR>"
+  )
     :with_noremap()
     :with_silent(),
   ["n|<Leader>ct"] = map_args "Template",

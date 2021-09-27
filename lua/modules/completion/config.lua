@@ -17,7 +17,6 @@ function config.nvim_cmp()
       keyword_pattern = [[\k\+]],
     },
     experimental = {
-      custom_menu = true,
       ghost_text = true,
     },
     documentation = {
@@ -76,6 +75,7 @@ function config.nvim_cmp()
           keyword_pattern = [[\k\+]],
         },
       },
+      { name = "nvim_lua" },
       { name = "path" },
       { name = "calc" },
     },
@@ -85,6 +85,7 @@ function config.nvim_cmp()
           nvim_lsp = "[LSP]",
           buffer = "[Buf]",
           vsnip = "[Vsnip]",
+          nvim_lua = "[Lua]",
         })[entry.source.name]
         return vim_item
       end,

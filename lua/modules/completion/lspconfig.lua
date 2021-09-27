@@ -5,7 +5,7 @@ local global = require "core.global"
 local format = require "modules.completion.format"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+capabilities = require("cmp_nvim_lsp").update_capabilities(capabilities)
 
 function _G.reload_lsp()
   vim.lsp.stop_client(vim.lsp.get_active_clients())
@@ -78,8 +78,8 @@ local enhance_attach = function(client, bufnr)
       -- floating_window_above_first = true,
       fix_pos = function(signatures, lspclient)
         if
-          signatures[1].activeParameter >= 0 and #signatures[1].parameters
-            == 1
+          signatures[1].activeParameter >= 0
+          and #signatures[1].parameters == 1
         then
           return false
         end
@@ -133,10 +133,10 @@ lspconfig.sumneko_lua.setup {
       },
       runtime = { version = "LuaJIT" },
       workspace = {
-        library = vim.list_extend(
-          { [vim.fn.expand "$VIMRUNTIME/lua"] = true },
-          {}
-        ),
+        library = {
+          [vim.fn.expand "$VIMRUNTIME/lua"] = true,
+          [vim.fn.expand "$VIMRUNTIME/lua/vim/lsp"] = true,
+        },
       },
     },
   },
