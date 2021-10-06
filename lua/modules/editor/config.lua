@@ -49,11 +49,12 @@ function config.autopairs()
       :with_del(cond.none())
       :use_key "]",
   }
-  npairs.get_rule("'"):with_pair(cond.not_filetypes { "rkt", "scheme", "lisp" })
-  require("nvim-autopairs.completion.cmp").setup {
-    map_cr = false, --  map <CR> on insert mode
-    map_complete = true, -- it will auto insert `(` after select function or method item
-  }
+
+  npairs.get_rule("'")[1]:with_pair(function()
+    if vim.bo.filetype == "scheme" then
+      return false
+    end
+  end)
 end
 
 function config.nvim_colorizer()
@@ -82,6 +83,11 @@ function config.vim_cursorwod()
   vim.api.nvim_command "autocmd InsertEnter * let b:cursorword = 0"
   vim.api.nvim_command "autocmd InsertLeave * let b:cursorword = 1"
   vim.api.nvim_command "augroup END"
+end
+
+function config.matchup()
+  vim.g.matchup_matchparen_deferred = 1
+  vim.g.matchup_matchparen_hi_surround_always = 1
 end
 
 return config

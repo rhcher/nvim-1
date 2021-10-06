@@ -2,19 +2,21 @@ local editor = {}
 local conf = require "modules.editor.config"
 
 editor["windwp/nvim-autopairs"] = {
-  after = "nvim-cmp",
+  event = { "BufReadPre", "BufNewFile" },
   config = conf.autopairs,
 }
 
 editor["andymass/vim-matchup"] = {
   event = "BufEnter",
-  config = function()
-    vim.g.matchup_matchparen_deferred = 1
-    vim.g.matchup_matchparen_hi_surround_always = 1
-  end,
+  config = conf.matchup,
 }
 
-editor["wellle/targets.vim"] = {}
+editor["wellle/targets.vim"] = {
+  config = function()
+    vim.g.targets_seekRanges =
+      "cc cr cb cB lc ac Ac lr lb ar ab rr rb bb ll al aa"
+  end,
+}
 
 editor["calebsmith/vim-lambdify"] = {
   ft = { "scheme", "lisp", "rkt" },
@@ -38,8 +40,8 @@ editor["hrsh7th/vim-eft"] = {
   end,
 }
 
-editor["tpope/vim-surround"] = {
-  event = { "BufReadPre", "BufNewFile" },
+editor["machakann/vim-sandwich"] = {
+  -- keys = { "sr", "sa", "sd" }
 }
 
 editor["tpope/vim-sleuth"] = {

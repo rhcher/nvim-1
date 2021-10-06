@@ -10,6 +10,11 @@ function config.nvim_bufferline()
       modified_icon = "✥",
       buffer_close_icon = "",
       always_show_bufferline = false,
+      custom_filter = function(bufnr)
+        if vim.bo[bufnr].filetype ~= "qf" then
+          return true
+        end
+      end,
     },
   }
 end

@@ -6,8 +6,7 @@ completion["neovim/nvim-lspconfig"] = {
   config = conf.nvim_lsp,
 }
 
-completion["jasonrhansen/lspsaga.nvim"] = {
-  branch = "finder-preview-fixes",
+completion["tami5/lspsaga.nvim"] = {
   cmd = "Lspsaga",
 }
 
@@ -22,7 +21,7 @@ completion["hrsh7th/nvim-cmp"] = {
     { "hrsh7th/cmp-path", after = "nvim-cmp" },
     { "hrsh7th/cmp-nvim-lua", after = "nvim-cmp", ft = "lua" },
   },
-  event = "InsertEnter",
+  event = "BufReadPre",
 }
 
 completion["ray-x/lsp_signature.nvim"] = {

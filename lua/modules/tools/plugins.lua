@@ -2,11 +2,21 @@ local tools = {}
 local conf = require "modules.tools.config"
 
 tools["tpope/vim-repeat"] = {
-  event = "BufReadPre"
+  event = "BufReadPre",
+}
+
+tools["kevinhwang91/nvim-bqf"] = {
+  branch = "dev",
+  config = conf.bqf,
+}
+
+tools["mhinz/vim-grepper"] = {
+  cmd = { "Grepper", "<plug>(GrepperOperator)" },
+  config = conf.vim_grepper,
 }
 
 tools["akinsho/nvim-toggleterm.lua"] = {
-  keys = {"n", "<M-=>"},
+  event = "BufReadPre",
   config = conf.toggleterm,
 }
 

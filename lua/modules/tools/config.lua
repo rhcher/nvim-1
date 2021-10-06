@@ -69,4 +69,28 @@ function config.toggleterm()
   )
 end
 
+function config.bqf()
+  require("bqf").setup {
+    preview = {
+      auto_preview = false,
+    },
+  }
+end
+
+function config.vim_grepper()
+  vim.api.command "aug Grepper"
+  vim.api.command "au!"
+  vim.api.command "au User Grepper call setqflist([], 'r', {'context': {'bqf': {'pattern_hl': histget('/')}}}) | botright copen"
+  vim.api.command "aug END"
+
+  vim.cmd [[command! Todo :Grepper -tool git -query '(TODO|FIXME)']]
+
+  vim.g.grepper = {
+    { open = 0 },
+    { quickfix = 1 },
+    { searchreg = 1 },
+    { highlight = 0 },
+  }
+end
+
 return config

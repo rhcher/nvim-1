@@ -6,19 +6,7 @@ local map_args = bind.map_args
 require "keymap.config"
 
 local plug_map = {
-  -- ["i|<S-TAB>"] = map_cmd("v:lua.s_tab_complete()"):with_silent():with_expr(),
   ["i|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent():with_noremap(),
-  -- ["i|<TAB>"] = map_cmd("v:lua.my_tab_complete()"):with_expr():with_silent(),
-  -- ["s|<TAB>"] = map_cmd("v:lua.my_tab_complete()"):with_expr():with_silent(),
-  -- ["i|<C-space>"] = map_cmd([[compe#complete()]])
-  --   :with_noremap()
-  --   :with_expr()
-  --   :with_nowait(),
-  -- ["i|<C-e>"] = map_cmd([[compe#close('<C-e>')]])
-  --   :with_noremap()
-  --   :with_expr()
-  --   :with_nowait(),
-  -- person keymap
   ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()")
     :with_silent()
     :with_nowait()
@@ -65,7 +53,9 @@ local plug_map = {
   ["n|K"] = map_cmd("<cmd>lua contextual_documentation()<CR>")
     :with_noremap()
     :with_silent(),
-  ["n|<leader>la"] = map_cr("Lspsaga code_action"):with_noremap():with_silent(),
+  ["n|<leader>la"] = map_cmd("<cmd>lua vim.lsp.buf.code_action()<CR>")
+    :with_noremap()
+    :with_silent(),
   ["v|<leader>la"] = map_cu("Lspsaga range_code_action")
     :with_noremap()
     :with_silent(),
@@ -148,6 +138,8 @@ local plug_map = {
   -- 	["n|sa"] = map_cmd("<Plug>(operator-surround-append)"):with_silent(),
   -- 	["n|sd"] = map_cmd("<Plug>(operator-surround-delete)"):with_silent(),
   -- 	["n|sr"] = map_cmd("<Plug>(operator-surround-replace)"):with_silent(),
+  ["n|gs"] = map_cmd("<Plug>GrepperOperator"):with_silent(),
+  ["x|gs"] = map_cmd("<Plug>GrepperOperator"):with_silent(),
   -- Plugin hrsh7th/vim-eft
   ["n|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),
   ["x|;"] = map_cmd("v:lua.enhance_ft_move(';')"):with_expr(),

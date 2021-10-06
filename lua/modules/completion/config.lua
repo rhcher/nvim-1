@@ -12,7 +12,6 @@ function config.nvim_cmp()
   end
   cmp.setup {
     completion = {
-      autocomplete = { require("cmp.types").cmp.TriggerEvent.TextChanged },
       completeopt = "menu,menuone,noselect",
       keyword_pattern = [[\k\+]],
     },
@@ -89,6 +88,13 @@ function config.nvim_cmp()
         })[entry.source.name]
         return vim_item
       end,
+    },
+  }
+  require("nvim-autopairs.completion.cmp").setup {
+    map_cr = false, --  map <CR> on insert mode
+    map_complete = true, -- it will auto insert `(` after select function or method item
+    map_char = {
+      haskell = "",
     },
   }
 end

@@ -1,0 +1,1 @@
+nnoremap q :ccl<CR>
