@@ -6,6 +6,7 @@ function config.autopairs()
   local cond = require "nvim-autopairs.conds"
 
   npairs.setup {
+    disable_filetype = { "racket", "clojure", "scheme", "lisp" },
     enable_check_bracket_line = false,
     check_ts = true,
     fast_wrap = {},
@@ -51,7 +52,7 @@ function config.autopairs()
   }
 
   npairs.get_rule("'")[1]:with_pair(function()
-    if vim.bo.filetype == "scheme" then
+    if vim.bo.filetype == "scheme" or vim.bo.filetype == "racket" then
       return false
     end
   end)

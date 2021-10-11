@@ -1,7 +1,7 @@
 local config = {}
 
-function config.galaxyline()
-  require "modules.ui.eviline"
+function config.lualine()
+  require "modules.ui.evil_lualine"
 end
 
 function config.nvim_bufferline()

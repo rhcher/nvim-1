@@ -11,4 +11,6 @@ lang["nvim-treesitter/nvim-treesitter-textobjects"] = {
   after = "nvim-treesitter",
 }
 
+lang["wlangstroth/vim-racket"] = {}
+
 return lang

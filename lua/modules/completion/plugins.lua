@@ -6,13 +6,12 @@ completion["neovim/nvim-lspconfig"] = {
   config = conf.nvim_lsp,
 }
 
-completion["tami5/lspsaga.nvim"] = {
-  cmd = "Lspsaga",
-}
+-- completion["tami5/lspsaga.nvim"] = {
+--   cmd = "Lspsaga",
+-- }
 
 completion["hrsh7th/nvim-cmp"] = {
   config = conf.nvim_cmp,
-  branch = "custom-menu",
   requires = {
     { "hrsh7th/cmp-buffer", after = "nvim-cmp" },
     { "hrsh7th/cmp-nvim-lsp", event = "BufReadPre" },
@@ -25,7 +24,7 @@ completion["hrsh7th/nvim-cmp"] = {
 }
 
 completion["ray-x/lsp_signature.nvim"] = {
-  event = "BufReadPre",
+  opt = true,
 }
 
 completion["hrsh7th/vim-vsnip"] = {

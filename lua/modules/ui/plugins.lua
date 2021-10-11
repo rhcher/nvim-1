@@ -1,19 +1,24 @@
 local ui = {}
 local conf = require "modules.ui.config"
 
-ui["rhcher/zephyr-nvim"] = {
-  config = [[vim.cmd('colorscheme zephyr')]],
+ui["srcery-colors/srcery-vim"] = {
+  after = "lualine.nvim",
+  config = function ()
+    vim.g.srcery_italic = 1
+    vim.cmd [[colorscheme srcery]]
+  end
 }
 
-ui["glepnir/dashboard-nvim"] = {
-  config = conf.dashboard,
+-- ui["glepnir/dashboard-nvim"] = {
+--   config = conf.dashboard,
+-- }
+
+ui["hoob3rt/lualine.nvim"] = {
+  config = conf.lualine,
+  requires = { "kyazdani42/nvim-web-devicons", opt = true },
 }
 
-ui["glepnir/galaxyline.nvim"] = {
-  branch = "main",
-  config = conf.galaxyline,
-  requires = "kyazdani42/nvim-web-devicons",
-}
+-- ui["nvim-lua/lsp-status.nvim"] = {}
 
 ui["akinsho/bufferline.nvim"] = {
   config = conf.nvim_bufferline,

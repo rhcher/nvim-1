@@ -9,6 +9,7 @@ function config.nvim_treesitter()
     matchup = { enable = true, },
     highlight = {
       enable = true,
+      disable = { "racket" },
     },
     textobjects = {
       swap = {

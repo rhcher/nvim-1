@@ -6,7 +6,26 @@ editor["windwp/nvim-autopairs"] = {
   config = conf.autopairs,
 }
 
+editor["max397574/better-escape.nvim"] = {
+  event = "BufEnter",
+  config = function ()
+    require("better_escape").setup({
+      mapping = {"jj"},
+      timeout = 300,
+    })
+  end
+}
+
+editor["guns/vim-sexp"] = {
+  ft = { "racket", "scheme", "fennel", "lisp", "clojure" },
+}
+
+editor["tpope/vim-sexp-mappings-for-regular-people"] = {
+  after = "vim-sexp",
+}
+
 editor["andymass/vim-matchup"] = {
+  commit = "e5eefcc04eb1cf82fc396e89acaf1d680543f7d7",
   event = "BufEnter",
   config = conf.matchup,
 }
@@ -19,12 +38,12 @@ editor["wellle/targets.vim"] = {
 }
 
 editor["calebsmith/vim-lambdify"] = {
-  ft = { "scheme", "lisp", "rkt" },
-  event = "BufReadPre",
+  after = "vim-racket",
+  ft = { "scheme", "lisp", "racket" },
 }
 
 editor["norcalli/nvim-colorizer.lua"] = {
-  ft = { "html", "css", "sass", "vim", "typescript", "typescriptreact" },
+  cmd = { "ColorizerToggle" },
   config = conf.nvim_colorizer,
 }
 
@@ -55,9 +74,9 @@ editor["tpope/vim-commentary"] = {
   event = { "BufReadPre", "BufNewFile" },
 }
 
-editor["kana/vim-niceblock"] = {
-  opt = true,
-}
+-- editor["kana/vim-niceblock"] = {
+--   opt = true,
+-- }
 
 editor["lewis6991/impatient.nvim"] = {}
 

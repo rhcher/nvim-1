@@ -7,10 +7,6 @@ require "keymap.config"
 
 local plug_map = {
   ["i|<CR>"] = map_cmd("v:lua.my_cr()"):with_expr():with_silent():with_noremap(),
-  ["n|mf"] = map_cr("<cmd>lua require('internal.fsevent').file_event()")
-    :with_silent()
-    :with_nowait()
-    :with_noremap(),
   ["n|gb"] = map_cr("BufferLinePick"):with_noremap():with_silent(),
   -- Packer
   ["n|<leader>pu"] = map_cr("PackerUpdate")

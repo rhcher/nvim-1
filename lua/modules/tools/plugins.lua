@@ -1,6 +1,24 @@
 local tools = {}
 local conf = require "modules.tools.config"
 
+tools["Olical/conjure"] = {
+  ft = { "scheme", "racket" },
+}
+
+tools["Olical/aniseed"] = {
+  after = "conjure",
+  ft = "fennel",
+}
+
+tools["mbbill/undotree"] = {
+  cmd = "UndotreeToggle",
+  config = function()
+    vim.g.undotree_SetFocusWhenToggle = 1
+  end,
+}
+
+tools["antoinemadec/FixCursorHold.nvim"] = {}
+
 tools["tpope/vim-repeat"] = {
   event = "BufReadPre",
 }

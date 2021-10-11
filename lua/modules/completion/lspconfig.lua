@@ -27,6 +27,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     underline = false,
     -- Enable virtual text, override spacing to 4
     virtual_text = false,
+    border = "single",
     signs = {
       enable = true,
       priority = 20,
@@ -71,10 +72,10 @@ local enhance_attach = function(client, bufnr)
   --   ]]
   -- end
   api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-  if vim.fn.expand "%:e" ~= "rkt" then
+  if vim.api.nvim_get_option "filetype" ~= "racket" then
     require("lsp_signature").on_attach {
       bind = true,
-      floating_window = true,
+      floating_window = false,
       -- floating_window_above_first = true,
       fix_pos = function(signatures, lspclient)
         if
@@ -88,9 +89,9 @@ local enhance_attach = function(client, bufnr)
         end
         return false
       end,
-      hint_enable = false,
+      hint_enable = true,
       hi_parameter = "Search",
-      extra_trigger_char = { "(", "," },
+      -- extra_trigger_char = { "(", "," },
       handler_opts = {
         border = "single",
       },
@@ -118,6 +119,7 @@ lspconfig.sumneko_lua.setup {
       end,
     },
   },
+  filetypes = { "lua" },
   cmd = {
     "/home/rhcher/workspace/lua-language-server/bin/Linux/lua-language-server",
     "/home/rhcher/workspace/lua-language-server/main.lua",
@@ -198,6 +200,7 @@ lspconfig.ccls.setup {
 lspconfig.rust_analyzer.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
+  filetypes = { "rust" },
   flags = {
     debounce_text_changes = 100,
   },
@@ -211,6 +214,7 @@ lspconfig.rust_analyzer.setup {
 lspconfig.racket_langserver.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
+  filetypes = { "scheme", "racket", "lisp" },
   flags = {
     debounce_text_changes = 100,
   },
@@ -246,6 +250,7 @@ lspconfig.pylsp.setup {
 lspconfig.hls.setup {
   on_attach = enhance_attach,
   capabilities = capabilities,
+  filetypes = { "haskell" },
   flags = {
     debounce_text_changes = 100,
   },
